@@ -5,7 +5,7 @@
 
 {% block css %}
 <style type="text/css">
-  #most-liked-post{
+  #most-liked-post, #second-most-liked-post{
     background-color: rgb(255, 255, 255);
     height: auto;
     padding-top: 20px;
@@ -23,12 +23,18 @@
             <h3>Trying to analyze some simple stats from Facebook API.</h3>
             <br>
 
-            <h2>Most Liked Post for this page !</h2>
             <div class="row">
-              <div class="col-md-4 col-md-offset-4">
+              <div class="col-md-4 col-md-offset-1">
+                <h2>Most Liked Post for this page !</h2>
                 <div id="most-liked-post">
                 </div>
                 
+              </div>
+              <div class="col-md-4 col-md-offset-1">
+                <h2>Second most liked post !</h2>
+                  <div id="second-most-liked-post">
+                  </div>
+                  
               </div>
             </div>
 
@@ -115,8 +121,13 @@ function post_data(data) {
     dataType: 'json',
     contentType: "application/json",
     success: function(response){
-      // console.log('POST success !');
       get_most_liked_post();
+      var post_url = response.link;
+      var post_html = '<div class="fb-post"'+ 
+                      'data-href="' + post_url + '"' +
+                      'data-width="500"></div>';
+      $('#second-most-liked-post').html(post_html);
+      FB.XFBML.parse(document.getElementById('second-most-liked-post'));
     },
     error: function( xhr, status, errorThrown ) {
       alert(errorThrown);

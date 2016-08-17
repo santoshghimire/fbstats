@@ -45,19 +45,20 @@ class GetPagePostsAPI(APIView):
     def post(self, request, *args, **kwargs):
         data = dict(request.data)
 
-        # Save the data to database
-        post_obj, created = FacebookPost.objects.get_or_create(
-            page_id=data['page_info']['id']
-        )
         # sort posts based on number of likes
         posts = sorted(
             data.get('posts'), key=lambda k: k['total_likes'],
             reverse=True
         )
 
-        post_obj.posts = json.dumps(posts)
-        post_obj.page_info = json.dumps(data.get('page_info'))
-        post_obj.most_liked_post = json.dumps(posts[0])
-        post_obj.save()
+        # # Save the data to database
+        # post_obj, created = FacebookPost.objects.get_or_create(
+        #     page_id=data['page_info']['id']
+        # )
+        # post_obj.posts = json.dumps(posts)
+        # post_obj.page_info = json.dumps(data.get('page_info'))
+        # post_obj.most_liked_post = json.dumps(posts[0])
+        # post_obj.save()
 
-        return Response(data)
+        # return second most liked post
+        return Response(posts[1])

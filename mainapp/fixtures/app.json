@@ -1,1 +1,0 @@
-[{"model": "socialaccount.socialapp", "pk": 1, "fields": {"provider": "facebook", "name": "Facebook Stats", "client_id": "756699321056213", "secret": "03cb61b1291cebf131828cd3289339be", "key": "", "sites": [1]}}]
