@@ -17,6 +17,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic import TemplateView
 from mainapp.views import DataPreview, GetPagePostsAPI
+from django.views.decorators.cache import cache_page
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -28,7 +30,7 @@ urlpatterns = [
     ),
     url(
         r'^preview/$',
-        DataPreview.as_view(),
+        cache_page(60 * 60)(DataPreview.as_view()),
         name='data-preview'
     ),
     url(

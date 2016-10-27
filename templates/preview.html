@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load cache %}
 {% load staticfiles i18n %}
 
 {% block title %}Preview{% endblock title %}
@@ -15,8 +16,10 @@
 </style>
 {% endblock css %}
 
+{% cache 1200 content %}
 {% block content %}
     <!-- Header -->
+    {% now "jS F Y H:i" %}
     <header id="top" class="header">
         <div class="text-vertical-center">
             <h1><a href="/">Facebook Stats</a></h1>
@@ -42,6 +45,7 @@
         </div>
     </header>
 {% endblock content %}
+{% endcache %}
 
 {% block javascript %}
 <script src="{% static 'js/csrftoken.js' %}"></script>
@@ -122,11 +126,11 @@ function post_data(data) {
     contentType: "application/json",
     success: function(response){
       get_most_liked_post();
-      var post_url = response.link;
-      var post_html = '<div class="fb-post"'+ 
-                      'data-href="' + post_url + '"' +
+      var second_post_url = response.link;
+      var second_post_html = '<div class="fb-post"'+ 
+                      'data-href="' + second_post_url + '"' +
                       'data-width="500"></div>';
-      $('#second-most-liked-post').html(post_html);
+      $('#second-most-liked-post').html(second_post_html);
       FB.XFBML.parse(document.getElementById('second-most-liked-post'));
     },
     error: function( xhr, status, errorThrown ) {

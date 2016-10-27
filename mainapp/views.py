@@ -1,10 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+import json
 from django.views.generic import View
-from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework.views import APIView
 from rest_framework.response import Response
-import json
-# from pprint import pprint
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from allauth.socialaccount.models import SocialToken, SocialApp
 from .models import FacebookPost
@@ -52,13 +51,14 @@ class GetPagePostsAPI(APIView):
         )
 
         # # Save the data to database
-        # post_obj, created = FacebookPost.objects.get_or_create(
-        #     page_id=data['page_info']['id']
-        # )
-        # post_obj.posts = json.dumps(posts)
-        # post_obj.page_info = json.dumps(data.get('page_info'))
-        # post_obj.most_liked_post = json.dumps(posts[0])
-        # post_obj.save()
+        post_obj, created = FacebookPost.objects.get_or_create(
+            page_id=data['page_info']['id']
+        )
+        post_obj.posts = json.dumps(posts)
+        post_obj.page_info = json.dumps(data.get('page_info'))
+        post_obj.most_liked_post = json.dumps(posts[0])
+        post_obj.save()
 
         # return second most liked post
+        # print(posts)
         return Response(posts[1])
