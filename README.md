@@ -25,7 +25,6 @@ and updates the database every hour.
 4. sudo rabbitmqctl add_vhost myvhost
 5. sudo rabbitmqctl set_permissions -p myvhost santosh ".*" ".*" ".*"
 6. sudo rabbitmq-server -detached
-
 7. python manage.py runserver
 8. celery -A fbstats beat
 9. celery -A fbstats worker -l debug
