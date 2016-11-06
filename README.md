@@ -18,7 +18,7 @@
 Gets page info, page posts and posts like from facebook api
 and updates the database every hour.
 
-To run the periodic task, you need to do the following steps.
+###To run the periodic task, you need to do the following steps.
 1. Rabbitmq: Install Rabbitmq
 2. sudo rabbitmq-server -detached
 3. sudo rabbitmqctl add_user santosh mirage
