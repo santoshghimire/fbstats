@@ -10,3 +10,4 @@ requests-oauthlib==0.6.2
 python-memcached==1.58
 git+https://github.com/mobolic/facebook-sdk.git#egg=facebook-sdk
 celery
+django-celery
