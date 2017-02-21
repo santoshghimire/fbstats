@@ -12,12 +12,3 @@ class UserData(models.Model):
 
     def __str__(self):
         return str(self.name)
-
-    # def save(self, *args, **kwargs):
-    #     request = kwargs.get('request')
-    #     print(request)
-    #     if request.user.is_authenticated():
-    #         self.user = request.user
-    #     else:
-    #         print("User not authenticated")
-    #     super(UserData, self).save(*args, **kwargs)
