@@ -12,9 +12,12 @@ def display_account(field):
     final_html = ""
     for each in all_accounts:
         final_html += (
-            '<a class="btn btn-block btn-social btn-{0}'
+            '<a style="margin-bottom: 20px;"'
+            ' class="btn btn-block btn-social btn-{0}'
             ' signin-btn" href="/accounts/{0}/login/'
             '?process=connect"><i class="fa'
             ' fa-{0}"></i> Connect {1}</a>'
         ).format(each.lower(), each)
+    if not final_html:
+        final_html = "<h4>That's all !!</h4>"
     return final_html
