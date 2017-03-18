@@ -19,6 +19,7 @@ from django.views.generic import TemplateView
 from mainapp.views import DataPreview, GetPagePostsAPI
 from django.views.decorators.cache import cache_page
 from action.api import UserDataDetail, UserDataList
+from mainapp.news_parser import NewsParser
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -58,5 +59,10 @@ urlpatterns = [
     url(
         r'^user-data/update/$',
         TemplateView.as_view(template_name="update.html")
+    ),
+    url(
+        r'^news/parser/$',
+        NewsParser.as_view(),
+        name="news_parser"
     ),
 ]

@@ -40,21 +40,27 @@
             <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
 
             {% if request.user.is_authenticated %}
-            <li class="sidebar-brand">
-                <a href="#" id="close">Welcome {{request.user.first_name}}</a>
-            </li>
-            <li>
-                <a href="/accounts/social/connections/">Account Connections</a>
-            </li>
-            <li>
-                <a href="/accounts/logout/">Logout</a>
-            </li>
+                <li class="sidebar-brand">
+                    <a href="#" id="close">Welcome {{request.user.first_name}}</a>
+                </li>
+                <li>
+                    <a href="/accounts/social/connections/">Account Connections</a>
+                </li>
+                <li>
+                    <a href="{% url 'news_parser' %}">News Parser</a>
+                </li>
+                <li>
+                    <a href="/accounts/logout/">Logout</a>
+                </li>
             {% else %}
             <li class="sidebar-brand">
                 <a href="#" id="close">Facebook Stats</a>
             </li>
             <li>
                 <a href="/accounts/facebook/login/?method=oauth2">Login</a>
+            </li>
+            <li>
+                <a href="{% url 'news_parser' %}">News Parser</a>
             </li>
             {% endif %}
         </ul>

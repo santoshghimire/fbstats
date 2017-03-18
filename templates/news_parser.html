@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load staticfiles i18n %}
+
+{% block title %}News Parser{% endblock title %}
+
+{% block css %}
+<style type="text/css">
+</style>
+{% endblock css %}
+
+{% block content %}
+    <div class="container" style="margin-top: 100px;">
+      <div class="row">
+      {% if method == "post" %}
+      <div class="col-md-12">
+            <div class="alert alert-success" role="alert" id="success-msg">
+            News URL parsed successfully !! <a href="{% url 'news_parser' %}">Parse another news.</a>
+            </div>
+      </div>
+      {% endif %}
+        <div class="col-md-12">
+            {% if method == "get" %}
+              <h1>Parse news url</h1>
+              <form action="." method="post" style="margin-top: 50px;" id="updateform">
+              {% csrf_token %}
+                <div class="form-group">
+                  <label for="id">News Url</label>
+                  <input type="text" class="form-control" name="url" id="url" placeholder="News URL">
+                </div>
+              </form>
+            {% else %}
+            <h1>{{title}}</h1>
+            <p>
+              Authors: {{authors}}
+            </p>
+            <p>
+              Published on: {{publish_date}}
+            </p>
+            {% if top_image %}
+              <img src="{{top_image}}">
+            {% endif %}
+            <p style="margin-top: 20px; margin-bottom: 20px;">
+              {{text}}
+            </p>
+            <p>
+              <strong>Keywords: </strong>{{keywords}}
+            </p>
+            <p style="margin-top: 20px; margin-bottom: 20px;">
+              <strong>Summary:</strong></br>
+              {{summary}}
+            </p>
+            <p>
+              <a href="{{url}}" target="_blank">Link to news</a>
+            </p>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+<script type="text/javascript">
+
+</script>
+{% endblock javascript %}
